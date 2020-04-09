@@ -1,0 +1,4 @@
+django==2.2
+ckeditor
+django-widget_tweaks
+stripe
