@@ -1,15 +1,12 @@
 import os
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/2.0/howto/deployment/checklist/
-
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'mq1q-^&s*9urx@%9ky(zp1*+ew-h5eq=%pz-r_m0r%ny#gv0e2cj'
-
+SECRET_KEY = os.getenv("SECRETKEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -70,22 +67,22 @@ WSGI_APPLICATION = 'jobsite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
 
 
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.mysql",
-        "NAME": "Krish",
-        "HOST": "127.0.0.1",
-        "PORT": "3306",
-        "USER": "root",
-        "PASSWORD": "Krish",
+        "NAME": os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "HOST": os.getenv("DB_HOST"),
+        "PORT": os.getenv("DB_PORT"),
     }
 }
 
@@ -176,5 +173,5 @@ CKEDITOR_CONFIGS = {
 }
 
 # Stripe Keys
-STRIPE_PUB_KEY = os.environ.get('STRIPE_PUB_KEY')
-STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
+STRIPE_PUB_KEY = os.getenv('STRIPE_PUB_KEY')
+STRIPE_SECRET_KEY = os.getenv('STRIPE_SECRET_KEY')

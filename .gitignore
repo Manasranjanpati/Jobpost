@@ -9,3 +9,4 @@ dist/
 eggs/
 .eggs/
 *.sqlite3
+.env
